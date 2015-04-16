@@ -29,7 +29,7 @@ var COVERAGE_STORAGE_VAR_NAME = '____JEST_COVERAGE_DATA____';
 
 var NODE_PATH = process.env.NODE_PATH;
 
-var COMPONENT_PATH = process.env.COMPONENT_PATH
+var REACT_PATH = process.env.REACT_PATH
 
 var IS_PATH_BASED_MODULE_NAME = /^(?:\.\.?\/|\/)/;
 
@@ -501,9 +501,9 @@ Loader.prototype._nodeModuleNameToPath = function(currPath, moduleName) {
         basedir: path.dirname(currPath),
         extensions: exts
       });
-    } else if (COMPONENT_PATH) {
+    } else if (REACT_PATH) {
       return resolve.sync(moduleName, {
-        paths: COMPONENT_PATH.split(path.delimiter),
+        paths: REACT_PATH.split(path.delimiter),
         basedir: path.dirname(currPath),
         extensions: exts
       });
