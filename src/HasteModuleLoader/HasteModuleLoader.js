@@ -29,6 +29,8 @@ var COVERAGE_STORAGE_VAR_NAME = '____JEST_COVERAGE_DATA____';
 
 var NODE_PATH = process.env.NODE_PATH;
 
+var COMPONENT_PATH = process.env.COMPONENT_PATH
+
 var IS_PATH_BASED_MODULE_NAME = /^(?:\.\.?\/|\/)/;
 
 var NODE_CORE_MODULES = {
@@ -496,6 +498,12 @@ Loader.prototype._nodeModuleNameToPath = function(currPath, moduleName) {
     if (NODE_PATH) {
       return resolve.sync(moduleName, {
         paths: NODE_PATH.split(path.delimiter),
+        basedir: path.dirname(currPath),
+        extensions: exts
+      });
+    } else if (COMPONENT_PATH) {
+      return resolve.sync(moduleName, {
+        paths: COMPONENT_PATH.split(path.delimiter),
         basedir: path.dirname(currPath),
         extensions: exts
       });
